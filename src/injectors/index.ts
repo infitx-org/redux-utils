@@ -1,5 +1,2 @@
-import applyInjectors from './applyInjectors';
-import { InjectableStore } from './types';
-
-export { applyInjectors };
-export type { InjectableStore };
+export { default as applyInjectors } from './applyInjectors';
+export * from './types';
