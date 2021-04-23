@@ -1,0 +1,9 @@
+.husky/
+git/
+src/
+docs/
+yarn*
+tsconfig*
+.prettier*
+.eslintrc.json
+.gitignore
