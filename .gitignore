@@ -9,6 +9,7 @@
 # Lib
 /dist
 /lib
+/docs
 
 # dependencies
 /node_modules
