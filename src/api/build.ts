@@ -13,6 +13,7 @@ import {
   MockCall,
   CompositeMock,
   Dispatcher,
+  ExtractState,
 } from './types';
 
 function getUrl<State>(
@@ -30,10 +31,11 @@ function isMockCall(mockConfig: MockCall | CompositeMock): mockConfig is MockCal
   return typeof mockConfig === 'function';
 }
 
-function buildDispatcher<State>(
-  methodName: MethodName,
-  config: EndpointConfig
-): () => Dispatcher<State> {
+function buildDispatcher(methodName: MethodName, config: EndpointConfig): () => Dispatcher {
+  // get the state from the config so that
+  // we don't need to specify when creating the api object
+  type State = ExtractState<EndpointConfig>;
+
   return function* dispatcher(data: BaseObject = {}): Dispatcher<State> {
     const state: State = yield select();
 
@@ -73,16 +75,16 @@ function buildDispatcher<State>(
   };
 }
 
-function buildApis<State, T extends Endpoints>(endpoints: T): Api<T> {
+function buildApis<T extends Endpoints>(endpoints: T) {
   return Object.entries(endpoints).reduce(function redd(prev, [name, config]) {
     return {
       ...prev,
       [name as keyof T]: Object.keys(Method).reduce(
         (all, methodName) => ({
           ...all,
-          [methodName]: buildDispatcher<State>(methodName as MethodName, config),
+          [methodName]: buildDispatcher(methodName as MethodName, config),
         }),
-        {} as ApiMethodMap
+        {} as ApiMethodMap<typeof config>
       ),
     };
   }, {} as Api<T>);

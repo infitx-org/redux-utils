@@ -14,8 +14,9 @@ const services = {
 };
 
 type EE = { environmentId: string };
+type AA = { environmentId: string };
 
-const environment: EndpointConfig<State, EE> = {
+const environment: EndpointConfig<State, AA> = {
   service: services.jsonplaceholder,
   url: (_, { environmentId }) => `/environments/${environmentId}`,
 };
@@ -36,7 +37,7 @@ const endpoints = {
   environmentServiceAccounts,
 };
 
-const api = buildApis<State, typeof endpoints>(endpoints);
+const api = buildApis<typeof endpoints>(endpoints);
 
 api.environment.delete({ environmentId: '3' });
 

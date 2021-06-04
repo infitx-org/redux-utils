@@ -20,7 +20,7 @@ export type Response = {
   data: unknown;
 };
 
-export type Dispatcher<State> = Generator<
+export type Dispatcher<State = unknown> = Generator<
   State | SelectEffect | CallEffect | AxiosPromise,
   Response,
   BaseObject & State & AxiosResponse
@@ -62,12 +62,13 @@ type StateAndParams<C> = C extends EndpointConfig<infer State, infer Params>
 
 // Api object configuration
 export type ExtractState<C> = StateAndParams<C>[0];
-
 export type ExtractParams<C> = StateAndParams<C>[1];
 
-export type ApiMethodMap<
-  Params = ExtractParams<EndpointConfig>,
-  State = ExtractState<EndpointConfig>
-> = Record<MethodName, (params: Params) => Dispatcher<State>>;
+export type ApiMethodMap<T extends EndpointConfig> = Record<
+  MethodName,
+  (params: ExtractParams<T>) => Dispatcher<ExtractState<T>>
+>;
 
-export type Api<T extends Endpoints> = Record<keyof T, ApiMethodMap<ExtractParams<T[keyof T]>>>;
+type ValueOf<T extends Endpoints> = T[keyof T];
+
+export type Api<T extends Endpoints> = Record<keyof T, ApiMethodMap<ValueOf<T>>>;
