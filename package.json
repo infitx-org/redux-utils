@@ -12,6 +12,8 @@
     "./": "./lib/"
   },
   "dependencies": {
+    "@modusbox/ts-utils": "^0.0.2-6",
+    "axios": "^0.21.1",
     "lodash": "^4.17.21",
     "object-hash": "^2.1.1",
     "redux": "^4.0.5",
