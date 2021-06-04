@@ -14,7 +14,6 @@ const services = {
 };
 
 type EE = { environmentId: string };
-type EA = { environmentId: string };
 
 const environment: EndpointConfig<State, EE> = {
   service: services.jsonplaceholder,
@@ -26,7 +25,7 @@ const environmentUsers: EndpointConfig<State, EE> = {
   url: (_, { environmentId }) => `/environments/${environmentId}/users`,
 };
 
-const environmentServiceAccounts: EndpointConfig<State, EA> = {
+const environmentServiceAccounts: EndpointConfig<State, EE> = {
   service: services.jsonplaceholder,
   url: (_, { environmentId }) => `/environments/${environmentId}/serviceAccounts`,
 };
@@ -38,5 +37,7 @@ const endpoints = {
 };
 
 const api = buildApis<State, typeof endpoints>(endpoints);
-api.environmentUsers.create({ environmentId: '2' });
+
+api.environment.delete({ environmentId: '3' });
+
 export default api;

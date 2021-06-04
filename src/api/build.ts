@@ -1,6 +1,6 @@
-import axios, { AxiosPromise, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import sleep from '@modusbox/ts-utils/lib/async/sleep';
-import { call, select, SelectEffect, CallEffect } from 'redux-saga/effects';
+import { call, select } from 'redux-saga/effects';
 import {
   Api,
   ApiMethodMap,
@@ -12,12 +12,15 @@ import {
   Method,
   MockCall,
   CompositeMock,
-  Response,
-  ExtractState,
-  ExtractParams,
+  Dispatcher,
 } from './types';
 
-function getUrl<State>(baseUrl: UrlConfig, state: State, data: BaseObject, urlFn?: UrlConfig) {
+function getUrl<State>(
+  baseUrl: UrlConfig<State>,
+  state: State,
+  data: BaseObject,
+  urlFn?: UrlConfig<State>
+) {
   const appUrl = typeof baseUrl === 'function' ? baseUrl(state, data) : baseUrl;
   const endpointUrl = typeof urlFn === 'function' ? urlFn(state, data) : urlFn;
   return `${appUrl}${endpointUrl}`;
@@ -26,12 +29,6 @@ function getUrl<State>(baseUrl: UrlConfig, state: State, data: BaseObject, urlFn
 function isMockCall(mockConfig: MockCall | CompositeMock): mockConfig is MockCall {
   return typeof mockConfig === 'function';
 }
-
-type Dispatcher<State> = Generator<
-  State | SelectEffect | CallEffect | AxiosPromise,
-  Response,
-  BaseObject & State & AxiosResponse
->;
 
 function buildDispatcher<State>(
   methodName: MethodName,

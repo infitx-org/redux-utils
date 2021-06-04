@@ -1,4 +1,9 @@
+import { AxiosPromise, AxiosResponse } from 'axios';
+import { SelectEffect, CallEffect } from 'redux-saga/effects';
+
 type KeysOfTypeOfEnum<TEnumType> = keyof TEnumType;
+
+export type BaseObject = Record<string, unknown>;
 
 export enum Method {
   read = 'get',
@@ -10,33 +15,38 @@ export enum Method {
 
 export type MethodName = KeysOfTypeOfEnum<typeof Method>;
 
-export type BaseObject = Record<string, unknown>;
-
-export type UrlConfig<State extends BaseObject = any, Params extends BaseObject = any> = (
-  state: State,
-  data: Params
-) => string;
-
-interface Service<State extends BaseObject, Params extends BaseObject> {
-  baseUrl: UrlConfig<State, Params>;
-  mock?: (state: State) => boolean;
-}
-
 export type Response = {
   status: number;
   data: unknown;
 };
 
-type MockDelay = number;
+export type Dispatcher<State> = Generator<
+  State | SelectEffect | CallEffect | AxiosPromise,
+  Response,
+  BaseObject & State & AxiosResponse
+>;
+
+export type UrlConfig<State = unknown, Params = unknown> =
+  | string
+  | ((state: State, data: Params) => string);
+
+interface Service<State, Params> {
+  baseUrl: UrlConfig<State, Params>;
+  mock?: (state: State) => boolean;
+}
+
+// Mocking configuration
 export type MockCall = (data: BaseObject) => Response;
+
 export type CompositeMock = {
   call: MockCall;
-  delay: MockDelay;
+  delay: number;
 };
 
 type MockConfig = Record<MethodName, MockCall | CompositeMock>;
 
-export interface EndpointConfig<State extends BaseObject = any, Params extends BaseObject = any> {
+// Endpoints configuration
+export interface EndpointConfig<State = any, Params = any> {
   service: Service<State, Params>;
   url: UrlConfig<State, Params>;
   transformResponse?: (data: unknown) => unknown;
@@ -45,16 +55,19 @@ export interface EndpointConfig<State extends BaseObject = any, Params extends B
 
 export type Endpoints = Record<string, EndpointConfig>;
 
-type ExtractTypeFromEndpointConfig<C> = C extends EndpointConfig<infer State, infer Params>
+// This helps us to extract from a given type
+type StateAndParams<C> = C extends EndpointConfig<infer State, infer Params>
   ? [State, Params]
   : never;
-export type ExtractState<C> = ExtractTypeFromEndpointConfig<C>[0];
-export type ExtractParams<C> = ExtractTypeFromEndpointConfig<C>[1];
 
-export type ApiMethodMap<Params = ExtractParams<EndpointConfig>> = Record<
-  MethodName,
-  (params: Params) => Generator
->;
+// Api object configuration
+export type ExtractState<C> = StateAndParams<C>[0];
 
-type X = keyof Endpoints;
+export type ExtractParams<C> = StateAndParams<C>[1];
+
+export type ApiMethodMap<
+  Params = ExtractParams<EndpointConfig>,
+  State = ExtractState<EndpointConfig>
+> = Record<MethodName, (params: Params) => Dispatcher<State>>;
+
 export type Api<T extends Endpoints> = Record<keyof T, ApiMethodMap<ExtractParams<T[keyof T]>>>;
