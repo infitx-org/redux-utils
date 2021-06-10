@@ -1,4 +1,4 @@
-import { buildApis } from './build';
+import buildApis, { buildOne } from './build';
 import { EndpointConfig } from './types';
 
 interface State {
@@ -16,6 +16,11 @@ const services = {
 type EE = { environmentId: string };
 type AA = { environmentId: string };
 
+// const fixed: EndpointConfig<State> = {
+//   service: services.jsonplaceholder,
+//   url: (_, { environmentId }) => `/environments/${environmentId}`,
+// };
+
 const environment: EndpointConfig<State, AA> = {
   service: services.jsonplaceholder,
   url: (_, { environmentId }) => `/environments/${environmentId}`,
@@ -32,6 +37,7 @@ const environmentServiceAccounts: EndpointConfig<State, EE> = {
 };
 
 const endpoints = {
+  // fixed,
   environment,
   environmentUsers,
   environmentServiceAccounts,
@@ -39,6 +45,9 @@ const endpoints = {
 
 const api = buildApis<typeof endpoints>(endpoints);
 
-api.environment.delete({ environmentId: '3' });
+api.environment.delete({ environmentId: 'e', body: {} });
+
+const x = buildOne(environment);
+x.create();
 
 export default api;

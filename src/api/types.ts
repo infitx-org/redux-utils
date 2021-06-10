@@ -30,8 +30,8 @@ export type UrlConfig<State = unknown, Params = unknown> =
   | string
   | ((state: State, data: Params) => string);
 
-interface Service<State, Params> {
-  baseUrl: UrlConfig<State, Params>;
+interface Service<State> {
+  baseUrl: string | ((state: State) => string);
   mock?: (state: State) => boolean;
 }
 
@@ -47,7 +47,7 @@ type MockConfig = Record<MethodName, MockCall | CompositeMock>;
 
 // Endpoints configuration
 export interface EndpointConfig<State = any, Params = any> {
-  service: Service<State, Params>;
+  service: Service<State>;
   url: UrlConfig<State, Params>;
   transformResponse?: (data: unknown) => unknown;
   mock?: Partial<MockConfig>;

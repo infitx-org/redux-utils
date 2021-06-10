@@ -1,14 +1,29 @@
 import axios from 'axios';
 import { runSaga } from 'redux-saga';
-import { buildApis } from './index';
-import { Config, Endpoints } from './types';
+import { EndpointConfig, Endpoints, Method } from './types';
+import buildApis from './build';
 
 jest.mock('axios');
 
-const services = {
-  testSvc: {
-    baseUrl: 'https://test.com',
-  },
+const testState = {
+  name: 'nameProperty',
+  lastName: 'lastnameProperty',
+};
+
+type State = typeof testState;
+
+const testService = {
+  baseUrl: 'https://test.com',
+};
+
+const testStaticEndpoint: EndpointConfig<State> = {
+  service: testService,
+  url: () => '/todos/1',
+};
+
+const testDynamicEndpoint: EndpointConfig<State, { id: string }> = {
+  service: testService,
+  url: (state, { id }) => `/todos/${id}`,
 };
 
 async function runSagaWithArgs(api, state = {}, data = {}) {
@@ -26,18 +41,28 @@ async function runSagaWithArgs(api, state = {}, data = {}) {
   return dispatched;
 }
 
-test('should build the config', () => {
-  const todo: Config<string> = {
-    service: services.testSvc,
-    url: () => '/todos/1',
-  };
+describe('tests the api object is built correctly', () => {
+  it('build the object with the endpoint names passed in', () => {
+    const endpoints = {
+      todo: testStaticEndpoint,
+      other: testStaticEndpoint,
+    };
+    const apis = buildApis<typeof endpoints>(endpoints);
+    expect(apis.todo).toBeInstanceOf(Object);
+    expect(apis.other).toBeInstanceOf(Object);
+    expect(Object.keys(apis)).toHaveLength(2);
+  });
 
-  const endpoints: Endpoints = {
-    todo,
-  };
+  it('each key in the api object has the method names as functions', () => {
+    const endpoints = {
+      todo: testStaticEndpoint,
+    };
+    const apis = buildApis<typeof endpoints>(endpoints);
 
-  const apis = buildApis(endpoints);
-  expect(apis.todo.read).toBeInstanceOf(Function);
+    Object.keys(Method).forEach((method) => {
+      expect(apis.todo[method]).toBeInstanceOf(Function);
+    });
+  });
 });
 
 describe('test the generator', () => {
@@ -46,9 +71,9 @@ describe('test the generator', () => {
     axios.mockImplementationOnce(() => Promise.resolve({ test: null }));
   });
 
-  test('should test the whole saga', async () => {
-    const todo: Config<string> = {
-      service: services.testSvc,
+  it('should test the whole saga', async () => {
+    const todo: EndpointConfig<string> = {
+      service: testService,
       url: () => '/todos/1',
     };
     const endpoints: Endpoints = {
@@ -67,9 +92,9 @@ describe('test the generator', () => {
     });
   });
 
-  test('should build the static url', async () => {
-    const todo: Config<string> = {
-      service: services.testSvc,
+  it('should build the static url', async () => {
+    const todo: EndpointConfig<string> = {
+      service: testService,
       url: () => '/todos/1',
     };
     const endpoints: Endpoints = {
@@ -88,9 +113,9 @@ describe('test the generator', () => {
     });
   });
 
-  test('should compose the correct url', async () => {
-    const todo: Config<string> = {
-      service: services.testSvc,
+  it('should compose the correct url', async () => {
+    const todo: EndpointConfig<string> = {
+      service: testService,
       url: (_, { id }) => `/todos/${id}`,
     };
     const endpoints: Endpoints = {
