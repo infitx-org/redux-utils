@@ -1,10 +1,9 @@
-import buildApis, { buildOne } from './build';
-import { EndpointConfig } from './types';
+import buildApis, { buildEndpointBuilder } from './build';
 
-interface State {
+type State = {
   svcUrl: string;
   mock: boolean;
-}
+};
 
 const services = {
   jsonplaceholder: {
@@ -16,39 +15,30 @@ const services = {
 type EnvIdType = { environmentId: string };
 type UserIdType = { userId: string };
 
-const environment: EndpointConfig<State, EnvIdType> = {
-  service: services.jsonplaceholder,
-  url: (_, { environmentId }) => `/environments/${environmentId}`,
-};
-
-const environmentUsers: EndpointConfig<State, EnvIdType> = {
-  service: services.jsonplaceholder,
-  url: (_, { environmentId }) => `/environments/${environmentId}/users`,
-};
-
-const environmentUser: EndpointConfig<State, EnvIdType & UserIdType> = {
-  service: services.jsonplaceholder,
-  url: (_, { environmentId, userId }) => `/environments/${environmentId}/users/${userId}`,
-};
-
-const environmentServiceAccounts: EndpointConfig<State, EnvIdType> = {
-  service: services.jsonplaceholder,
-  url: (_, { environmentId }) => `/environments/${environmentId}/serviceAccounts`,
-};
+const buildEndpoint = buildEndpointBuilder<State>();
 
 const endpoints = {
-  environment,
-  environmentUsers,
-  environmentUser,
-  environmentServiceAccounts,
+  environment: buildEndpoint<EnvIdType>({
+    service: services.jsonplaceholder,
+    url: (_, { environmentId }) => `/environments/${environmentId}`,
+  }),
+  environmentUsers: buildEndpoint<EnvIdType>({
+    service: services.jsonplaceholder,
+    url: (_, { environmentId }) => `/environments/${environmentId}/users`,
+  }),
+  environmentUser: buildEndpoint<EnvIdType & UserIdType>({
+    service: services.jsonplaceholder,
+    url: (_, { environmentId, userId }) => `/environments/${environmentId}/users/${userId}`,
+  }),
+  environmentServiceAccounts: buildEndpoint<EnvIdType>({
+    service: services.jsonplaceholder,
+    url: (_, { environmentId }) => `/environments/${environmentId}/serviceAccounts`,
+  }),
 };
 
-const api = buildApis<typeof endpoints>(endpoints);
+const api = buildApis(endpoints);
 
 api.environment.delete({ environmentId: 'e', body: {} });
 api.environmentUser.read({ environmentId: '3', userId: '2' });
-
-const x = buildOne(environment);
-x.create();
 
 export default api;

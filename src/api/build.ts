@@ -1,7 +1,26 @@
-import { Api, ApiMethodMap, Endpoints, EndpointConfig, MethodName, Method } from './types';
+import {
+  Api,
+  ApiMethodMap,
+  Endpoints,
+  EndpointConfig,
+  MethodName,
+  Method,
+  BaseObject,
+} from './types';
 import buildDispatcher from './dispatcher';
 
-export function buildOne<T extends EndpointConfig>(config: T): ApiMethodMap<T> {
+type Builder<State> = <Params extends BaseObject>(
+  config: EndpointConfig<State, Params>
+) => EndpointConfig<State, Params>;
+
+export function buildEndpointBuilder<State extends BaseObject>(): Builder<State> {
+  const buildEndpoint = <Params extends BaseObject>(
+    config: EndpointConfig<State, Params>
+  ): EndpointConfig<State, Params> => config;
+  return buildEndpoint;
+}
+
+function buildOne<T extends EndpointConfig>(config: T): ApiMethodMap<T> {
   return Object.keys(Method).reduce(
     (all, methodName) => ({
       ...all,
