@@ -46,7 +46,8 @@ export type CompositeMock = {
 type MockConfig = Record<MethodName, MockCall | CompositeMock>;
 
 // Endpoints configuration
-export interface EndpointConfig<State = any, Params = any> {
+// eslint-disable-next-line
+export interface EndpointConfig<State = any, Params extends BaseObject = any> {
   service: Service<State>;
   url: UrlConfig<State, Params>;
   transformResponse?: (data: unknown) => unknown;
@@ -69,6 +70,4 @@ export type ApiMethodMap<T extends EndpointConfig> = Record<
   (params: ExtractParams<T>) => Dispatcher<ExtractState<T>>
 >;
 
-type ValueOf<T extends Endpoints> = T[keyof T];
-
-export type Api<T extends Endpoints> = Record<keyof T, ApiMethodMap<ValueOf<T>>>;
+export type Api<T extends Endpoints> = { [K in keyof T]: ApiMethodMap<T[K]> };

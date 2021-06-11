@@ -1,4 +1,3 @@
-import { call } from 'redux-saga/effects';
 import sleep from '@modusbox/ts-utils/lib/async/sleep';
 import { Method, MockCall, CompositeMock, EndpointConfig, MethodName, BaseObject } from './types';
 
@@ -6,11 +5,11 @@ function isMockCall(mockConfig: MockCall | CompositeMock): mockConfig is MockCal
   return typeof mockConfig === 'function';
 }
 
-export function* getMock<State>(
+export function getMock<State>(
   state: State,
   config: EndpointConfig,
   methodName: MethodName
-): Generator | undefined {
+): ((d: BaseObject) => Generator<Promise<true>, unknown, unknown>) | undefined {
   if (config.service.mock?.(state)) {
     const mockConfig = config.mock?.[methodName];
     if (mockConfig) {
@@ -19,12 +18,12 @@ export function* getMock<State>(
         const delay = isMockCall(mockConfig) ? 200 : mockConfig.delay;
 
         // simulate delay
-        yield call(sleep, delay);
+        yield sleep(delay);
         return mockFn(data);
       };
     }
-    return undefined;
   }
+  return undefined;
 }
 
 // Simple convenience method to get an HTTP method
