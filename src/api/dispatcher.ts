@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { call, select } from 'redux-saga/effects';
-import { BaseObject, EndpointConfig, MethodName, Dispatcher, ExtractState } from './types';
+import { EndpointConfig, MethodName, Dispatcher, ExtractState } from './types';
 import * as utils from './utils';
 
 export default function buildDispatcher<T extends EndpointConfig>(
@@ -11,7 +11,7 @@ export default function buildDispatcher<T extends EndpointConfig>(
   // we don't need to specify when creating the api object
   type State = ExtractState<T>;
 
-  return function* dispatcher(data: BaseObject = {}): Dispatcher<State> {
+  return function* dispatcher(data: Record<string, unknown> = {}): Dispatcher<State> {
     const state: State = yield select();
 
     // Try and see if a mock fn is available

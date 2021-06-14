@@ -13,7 +13,7 @@ type Builder<State> = <Params extends BaseObject>(
   config: EndpointConfig<State, Params>
 ) => EndpointConfig<State, Params>;
 
-export function buildEndpointBuilder<State extends BaseObject>(): Builder<State> {
+export function buildEndpointBuilder<State extends unknown>(): Builder<State> {
   const buildEndpoint = <Params extends BaseObject>(
     config: EndpointConfig<State, Params>
   ): EndpointConfig<State, Params> => config;
