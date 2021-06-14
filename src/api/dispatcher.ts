@@ -15,7 +15,7 @@ export default function buildDispatcher<T extends EndpointConfig>(
     const state: State = yield select();
 
     // Try and see if a mock fn is available
-    const mock = utils.getMock(state, config, methodName);
+    const mock = utils.getMock<State>(state, config, methodName);
     if (typeof mock === 'function') {
       const response = yield call(mock, data);
       return response;

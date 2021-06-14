@@ -1,53 +1,71 @@
 import axios from 'axios';
 import { runSaga } from 'redux-saga';
 import { EndpointConfig, Endpoints, Method } from './types';
-import buildApis from './build';
+import buildApis, { buildEndpointBuilder } from './build';
 
 jest.mock('axios');
+
+// Define reusable test data
+
+type State = typeof testState;
 
 const testState = {
   name: 'nameProperty',
   lastName: 'lastnameProperty',
 };
 
-type State = typeof testState;
-
 const testService = {
   baseUrl: 'https://test.com',
+  mock: () => true,
 };
 
-const testStaticEndpoint: EndpointConfig<State> = {
+const testStaticEndpoint = {
   service: testService,
   url: () => '/todos/1',
 };
 
-const testDynamicEndpoint: EndpointConfig<State, { id: string }> = {
+const testDynamicEndpoint = {
   service: testService,
   url: (state, { id }) => `/todos/${id}`,
 };
 
-async function runSagaWithArgs(api, state = {}, data = {}) {
+// Runner
+async function runSagaWithArgs(saga, data = {}) {
   const dispatched = [];
-  await runSaga(
+  return runSaga(
     {
       dispatch: (action) => dispatched.push(action),
-      getState: () => null,
+      getState: () => testState,
     },
-    api,
-    state,
+    saga,
     data
   ).toPromise();
-
-  return dispatched;
 }
 
 describe('tests the api object is built correctly', () => {
+  it('builds the endpoint builder', () => {
+    const builder = buildEndpointBuilder<State>();
+    expect(builder).toBeInstanceOf(Function);
+  });
+
+  it('the endpoint builder build an endpoint config', () => {
+    const builder = buildEndpointBuilder<State>();
+    const config = builder({
+      service: testService,
+      url: () => '/todos/1',
+    });
+
+    expect(config).toBeInstanceOf(Object);
+    expect(config.service).toEqual(testService);
+    expect(config.url).toBeInstanceOf(Function);
+  });
+
   it('build the object with the endpoint names passed in', () => {
     const endpoints = {
       todo: testStaticEndpoint,
       other: testStaticEndpoint,
     };
-    const apis = buildApis<typeof endpoints>(endpoints);
+    const apis = buildApis(endpoints);
     expect(apis.todo).toBeInstanceOf(Object);
     expect(apis.other).toBeInstanceOf(Object);
     expect(Object.keys(apis)).toHaveLength(2);
@@ -57,7 +75,7 @@ describe('tests the api object is built correctly', () => {
     const endpoints = {
       todo: testStaticEndpoint,
     };
-    const apis = buildApis<typeof endpoints>(endpoints);
+    const apis = buildApis(endpoints);
 
     Object.keys(Method).forEach((method) => {
       expect(apis.todo[method]).toBeInstanceOf(Function);
@@ -65,72 +83,127 @@ describe('tests the api object is built correctly', () => {
   });
 });
 
-describe('test the generator', () => {
+describe('test the url is build correctly when saga runs', () => {
+  const builder = buildEndpointBuilder<State>();
+
   beforeEach(() => {
     axios.mockReset();
     axios.mockImplementationOnce(() => Promise.resolve({ test: null }));
   });
 
-  it('should test the whole saga', async () => {
-    const todo: EndpointConfig<string> = {
-      service: testService,
-      url: () => '/todos/1',
-    };
-    const endpoints: Endpoints = {
-      todo,
-    };
-
-    const apis = buildApis(endpoints);
-    await runSagaWithArgs(apis.todo.read);
-
-    expect(axios).toHaveBeenCalledWith({
-      method: 'get',
-      url: 'https://test.com/todos/1',
-      data: undefined,
-      params: undefined,
-      validateStatus: expect.any(Function),
-    });
-  });
-
   it('should build the static url', async () => {
-    const todo: EndpointConfig<string> = {
-      service: testService,
-      url: () => '/todos/1',
-    };
-    const endpoints: Endpoints = {
-      todo,
-    };
-
-    const apis = buildApis(endpoints);
-
-    await runSagaWithArgs(apis.todo.read);
-    expect(axios).toHaveBeenCalledWith({
-      method: 'get',
-      url: 'https://test.com/todos/1',
-      data: undefined,
-      params: undefined,
-      validateStatus: expect.any(Function),
+    const apis = buildApis({
+      todo: builder({
+        service: testService,
+        url: () => '/todos/1',
+      }),
     });
+
+    const result = await runSagaWithArgs(apis.todo.read);
+
+    expect(axios).toHaveBeenCalledWith(
+      expect.objectContaining({
+        url: 'https://test.com/todos/1',
+      })
+    );
   });
 
-  it('should compose the correct url', async () => {
-    const todo: EndpointConfig<string> = {
-      service: testService,
-      url: (_, { id }) => `/todos/${id}`,
-    };
-    const endpoints: Endpoints = {
-      todo,
-    };
+  it('should build the dynamic url with params', async () => {
+    type Params = { id: string };
 
-    const apis = buildApis(endpoints);
+    const apis = buildApis({
+      todo: builder<Params>({
+        service: testService,
+        url: (_, { id }) => `/todos/${id}`,
+      }),
+    });
+
     await runSagaWithArgs(apis.todo.read, { id: 12 });
 
-    expect(axios).toHaveBeenCalledWith({
-      method: 'get',
-      url: 'https://test.com/todos/12',
-      data: undefined,
-      params: undefined,
-      validateStatus: expect.any(Function),
+    expect(axios).toHaveBeenCalledWith(
+      expect.objectContaining({
+        url: 'https://test.com/todos/12',
+      })
+    );
+  });
+
+  it('should build the dynamic url with state', async () => {
+    const apis = buildApis({
+      todo: builder({
+        service: testService,
+        url: (state) => `/todos/${state.name}`,
+      }),
     });
+
+    await runSagaWithArgs(apis.todo.read);
+
+    expect(axios).toHaveBeenCalledWith(
+      expect.objectContaining({
+        url: 'https://test.com/todos/nameProperty',
+      })
+    );
+  });
+});
+
+describe('test the mock functions', () => {
+  const builder = buildEndpointBuilder<State>();
+
+  beforeEach(() => {
+    axios.mockReset();
+    axios.mockImplementationOnce(() => Promise.resolve({ test: null }));
+  });
+
+  it('should use the mock function and not do any axios call', async () => {
+    const apis = buildApis({
+      todo: builder({
+        service: testService,
+        url: () => '/todos/1',
+        mock: {
+          read: {
+            delay: 20,
+            call: () => ({ status: 200, data: [] }),
+          },
+        },
+      }),
+    });
+
+    await runSagaWithArgs(apis.todo.read, { id: '2' });
+    expect(axios).not.toHaveBeenCalled();
+  });
+
+  it('should use the mock function in the abbreviated form', async () => {
+    const apis = buildApis({
+      todo: builder({
+        service: testService,
+        url: () => '/todos/1',
+        mock: {
+          read: () => ({ status: 200, data: [] }),
+        },
+      }),
+    });
+
+    await runSagaWithArgs(apis.todo.read, { id: '2' });
+
+    expect(axios).not.toHaveBeenCalled();
+  });
+
+  it('should get the mock response', async () => {
+    const apis = buildApis({
+      todo: builder({
+        service: testService,
+        url: () => '/todos/1',
+        mock: {
+          read: {
+            delay: 200,
+            call: () => ({ status: 200, data: [] }),
+          },
+        },
+      }),
+    });
+
+    const response = await runSagaWithArgs(apis.todo.read, { id: '2' });
+
+    expect(response).toBeInstanceOf(Object);
+    expect(response).toEqual({ status: 200, data: [] });
   });
 });

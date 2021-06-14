@@ -41,14 +41,14 @@ interface Service<State> {
 }
 
 // Mocking configuration
-export type MockCall = (data: BaseObject) => Response;
+export type MockCall<Params = unknown> = (data: Params) => Response;
 
-export type CompositeMock = {
-  call: MockCall;
+export type CompositeMock<Params = unknown> = {
+  call: MockCall<Params>;
   delay: number;
 };
 
-type MockConfig = Record<MethodName, MockCall | CompositeMock>;
+type MockConfig<Params = unknown> = Record<MethodName, MockCall<Params> | CompositeMock<Params>>;
 
 // Endpoints configuration
 // eslint-disable-next-line
@@ -56,7 +56,7 @@ export interface EndpointConfig<State = any, Params = any> {
   service: Service<State>;
   url: UrlConfig<State, Params>;
   transformResponse?: (data: unknown) => unknown;
-  mock?: Partial<MockConfig>;
+  mock?: Partial<MockConfig<Params>>;
 }
 
 export type Endpoints = Record<string, EndpointConfig>;
