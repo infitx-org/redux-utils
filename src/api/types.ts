@@ -52,7 +52,7 @@ type MockConfig = Record<MethodName, MockCall | CompositeMock>;
 
 // Endpoints configuration
 // eslint-disable-next-line
-export interface EndpointConfig<State = any, Params extends BaseObject = any> {
+export interface EndpointConfig<State = any, Params = any> {
   service: Service<State>;
   url: UrlConfig<State, Params>;
   transformResponse?: (data: unknown) => unknown;
