@@ -24,9 +24,9 @@ function buildOne<T extends EndpointConfig>(config: T): ApiMethodMap<T> {
   return Object.keys(Method).reduce(
     (all, methodName) => ({
       ...all,
-      [methodName]: buildDispatcher<typeof config>(methodName as MethodName, config),
+      [methodName]: buildDispatcher<T>(methodName as MethodName, config),
     }),
-    {} as ApiMethodMap<typeof config>
+    {} as ApiMethodMap<T>
   );
 }
 
@@ -38,3 +38,9 @@ export default function buildApis<T extends Endpoints>(endpoints: T): Api<T> {
     };
   }, {} as Api<T>);
 }
+
+// <Type<Name, Lastname>>
+
+// function fucking<T extends Type>(t: Type) {
+
+// }

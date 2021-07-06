@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { runSaga } from 'redux-saga';
+import { call } from 'redux-saga/effects';
+
 import { EndpointConfig, Endpoints, Method } from './types';
 import buildApis, { buildEndpointBuilder } from './build';
 
@@ -205,5 +207,45 @@ describe('test the mock functions', () => {
 
     expect(response).toBeInstanceOf(Object);
     expect(response).toEqual({ status: 200, data: [] });
+  });
+});
+
+describe('saga yield call', () => {
+  it('just works', async () => {
+    const builder = buildEndpointBuilder<State>();
+
+    const apis = buildApis({
+      todoArgs: builder<{ a: string }>({
+        service: testService,
+        url: () => '/todos/1',
+        mock: {
+          read: {
+            delay: 200,
+            call: () => ({ status: 200, data: [] }),
+          },
+        },
+      }),
+      todo: builder({
+        service: testService,
+        url: () => '/todos/1',
+        mock: {
+          read: {
+            delay: 200,
+            call: () => ({ status: 200, data: [] }),
+          },
+        },
+      }),
+    });
+
+    // const response = await runSagaWithArgs(apis.todo.read, { id: '2' });
+
+    function* saga() {
+      yield call(apis.todo.read, {});
+      yield call(apis.todo.read, { body: '2' });
+
+      yield call(apis.todoArgs.read, { a: '2' });
+      yield call(apis.todoArgs.read, { body: '2' });
+      yield call(apis.todoArgs.read, { a: '2', body: '2' });
+    }
   });
 });

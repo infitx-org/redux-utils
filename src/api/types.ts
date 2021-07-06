@@ -20,7 +20,7 @@ export type Response = {
   data: unknown;
 };
 
-export type Body = {
+export type HttpConfig = {
   body?: unknown;
   params?: unknown;
 };
@@ -72,7 +72,7 @@ export type ExtractParams<C> = StateAndParams<C>[1];
 
 export type ApiMethodMap<T extends EndpointConfig> = Record<
   MethodName,
-  (params: ExtractParams<T> & Body) => Dispatcher<ExtractState<T>>
+  (params: ExtractParams<T> & Partial<HttpConfig>) => Dispatcher<ExtractState<T>>
 >;
 
 export type Api<T extends Endpoints> = { [K in keyof T]: ApiMethodMap<T[K]> };
