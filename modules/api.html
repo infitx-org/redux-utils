@@ -87,12 +87,12 @@
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#api-1" class="tsd-kind-icon">Api</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#apimethodmap" class="tsd-kind-icon">Api<wbr>Method<wbr>Map</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#baseobject" class="tsd-kind-icon">Base<wbr>Object</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#body" class="tsd-kind-icon">Body</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#compositemock" class="tsd-kind-icon">Composite<wbr>Mock</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#dispatcher" class="tsd-kind-icon">Dispatcher</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#endpoints" class="tsd-kind-icon">Endpoints</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#extractparams" class="tsd-kind-icon">Extract<wbr>Params</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#extractstate" class="tsd-kind-icon">Extract<wbr>State</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#httpconfig" class="tsd-kind-icon">Http<wbr>Config</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#methodname" class="tsd-kind-icon">Method<wbr>Name</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#mockcall" class="tsd-kind-icon">Mock<wbr>Call</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#response" class="tsd-kind-icon">Response</a></li>
@@ -117,7 +117,7 @@
 					<div class="tsd-signature tsd-kind-icon">Api&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><a href="api.html#apimethodmap" class="tsd-signature-type" data-tsd-kind="Type alias">ApiMethodMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L78">src/api/types.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L78">src/api/types.ts:78</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -130,10 +130,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="apimethodmap" class="tsd-anchor"></a>
 					<h3>Api<wbr>Method<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">Api<wbr>Method<wbr>Map&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#methodname" class="tsd-signature-type" data-tsd-kind="Type alias">MethodName</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="api.html#extractparams" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="api.html#body" class="tsd-signature-type" data-tsd-kind="Type alias">Body</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#dispatcher" class="tsd-signature-type" data-tsd-kind="Type alias">Dispatcher</a><span class="tsd-signature-symbol">&lt;</span><a href="api.html#extractstate" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Api<wbr>Method<wbr>Map&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#methodname" class="tsd-signature-type" data-tsd-kind="Type alias">MethodName</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="api.html#extractparams" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#httpconfig" class="tsd-signature-type" data-tsd-kind="Type alias">HttpConfig</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#dispatcher" class="tsd-signature-type" data-tsd-kind="Type alias">Dispatcher</a><span class="tsd-signature-symbol">&lt;</span><a href="api.html#extractstate" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L73">src/api/types.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L73">src/api/types.ts:73</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -149,30 +149,9 @@
 					<div class="tsd-signature tsd-kind-icon">Base<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L6">src/api/types.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L6">src/api/types.ts:6</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="body" class="tsd-anchor"></a>
-					<h3>Body</h3>
-					<div class="tsd-signature tsd-kind-icon">Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span>params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L23">src/api/types.ts:23</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="compositemock" class="tsd-anchor"></a>
@@ -180,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">Composite<wbr>Mock&lt;Params&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>call<span class="tsd-signature-symbol">: </span><a href="api.html#mockcall" class="tsd-signature-type" data-tsd-kind="Type alias">MockCall</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>delay<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L46">src/api/types.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L46">src/api/types.ts:46</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -207,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">Dispatcher&lt;State&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Generator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SelectEffect</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CallEffect</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosPromise</span><span class="tsd-signature-symbol">, </span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol">, </span><a href="api.html#baseobject" class="tsd-signature-type" data-tsd-kind="Type alias">BaseObject</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L28">src/api/types.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L28">src/api/types.ts:28</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -223,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">Endpoints<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/api.endpointconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">EndpointConfig</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L62">src/api/types.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L62">src/api/types.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -233,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">Extract<wbr>Params&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">StateAndParams</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L71">src/api/types.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L71">src/api/types.ts:71</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -249,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">Extract<wbr>State&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">StateAndParams</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L70">src/api/types.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L70">src/api/types.ts:70</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -260,12 +239,33 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
+					<a name="httpconfig" class="tsd-anchor"></a>
+					<h3>Http<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">Http<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span>params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L23">src/api/types.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
 					<a name="methodname" class="tsd-anchor"></a>
 					<h3>Method<wbr>Name</h3>
 					<div class="tsd-signature tsd-kind-icon">Method<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">KeysOfTypeOfEnum</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="../enums/api.method.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Method</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L16">src/api/types.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L16">src/api/types.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -275,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">Mock<wbr>Call&lt;Params&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L44">src/api/types.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L44">src/api/types.ts:44</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -312,7 +312,7 @@
 					<div class="tsd-signature tsd-kind-icon">Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L18">src/api/types.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L18">src/api/types.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -333,7 +333,7 @@
 					<div class="tsd-signature tsd-kind-icon">Url<wbr>Config&lt;State, Params&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">State</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/types.ts#L34">src/api/types.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/types.ts#L34">src/api/types.ts:34</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -359,7 +359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/build.ts#L16">src/api/build.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/build.ts#L16">src/api/build.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -382,7 +382,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/95f40d6/src/api/build.ts#L33">src/api/build.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/4592abd/src/api/build.ts#L33">src/api/build.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -415,6 +415,15 @@
 					<li class=" tsd-kind-namespace">
 						<a href="injectors.html">injectors</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="reducers.html">reducers</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace">
+						<a href="reducers.request.html">reducers.request</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace">
+						<a href="reducers.request.default.html">reducers.request.default</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -434,9 +443,6 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
 						<a href="api.html#baseobject" class="tsd-kind-icon">Base<wbr>Object</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="api.html#body" class="tsd-kind-icon">Body</a>
-					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 						<a href="api.html#compositemock" class="tsd-kind-icon">Composite<wbr>Mock</a>
 					</li>
@@ -451,6 +457,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 						<a href="api.html#extractstate" class="tsd-kind-icon">Extract<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
+						<a href="api.html#httpconfig" class="tsd-kind-icon">Http<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
 						<a href="api.html#methodname" class="tsd-kind-icon">Method<wbr>Name</a>
