@@ -1,4 +1,4 @@
-import { StateConfig, RequestState, ExtractMeta, ExtractData } from './types';
+import { StateConfig, RequestState, PendingState, ExtractMeta, ExtractData } from './types';
 
 function buildConfig<T>(config?: Partial<StateConfig<T>>): StateConfig<T> {
   return {
@@ -9,7 +9,7 @@ function buildConfig<T>(config?: Partial<StateConfig<T>>): StateConfig<T> {
   };
 }
 
-export default function requestState<T = undefined, M = undefined>(
+export default function requestState<T = unknown, M = unknown>(
   config?: Partial<StateConfig<T>>
 ): RequestState<T, M> {
   return {
@@ -32,7 +32,7 @@ function setErrorByConfig(state: RequestState) {
 requestState.request = function setRequestStatePending<S extends RequestState>(
   state: S,
   meta?: ExtractMeta<S>
-): RequestState<ExtractData<S>, ExtractMeta<S>> {
+): PendingState<ExtractData<S>, ExtractMeta<S>> {
   return {
     config: state.config,
     data: setDataByConfig(state),
