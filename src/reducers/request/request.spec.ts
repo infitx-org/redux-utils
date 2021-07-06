@@ -96,3 +96,56 @@ describe('tests the "request" method', () => {
     expect(result.error).toBe(undefined);
   });
 });
+
+describe('tests the "failed" method', () => {
+  it('set the error and unset pending', () => {
+    const obj = requestState();
+    const result = requestState.failed(obj, 'error');
+
+    expect(result.error).toBe('error');
+    expect(result.pending).toBe(false);
+  });
+
+  it('does not clear the data by default', () => {
+    const obj = requestState<string>('initialValue');
+    obj.data = 'changedValue';
+    const result = requestState.failed(obj, 'error');
+
+    expect(result.data).toBe('changedValue');
+  });
+
+  it('clears the data if set in config', () => {
+    const obj = requestState<string>('initialValue', { clearData: true });
+    obj.data = 'changedValue';
+    const result = requestState.failed(obj, 'error');
+
+    expect(result.data).toBe('initialValue');
+  });
+
+  it('does not clear the meta', () => {
+    const obj = requestState<undefined, string>();
+    obj.meta = 'meta';
+    const result = requestState.failed(obj, 'error');
+
+    expect(result.meta).toBe('meta');
+  });
+});
+
+describe('tests the "succeeded" method', () => {
+  it('set the data, unset any error and unset pending', () => {
+    const obj = requestState<string>();
+    const result = requestState.succeeded(obj, 'data');
+
+    expect(result.error).toBe(undefined);
+    expect(result.pending).toBe(false);
+    expect(result.data).toBe('data');
+  });
+
+  it('does not clear the meta', () => {
+    const obj = requestState<string, string>();
+    obj.meta = 'meta';
+    const result = requestState.succeeded(obj, 'data');
+
+    expect(result.meta).toBe('meta');
+  });
+});

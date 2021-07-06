@@ -9,7 +9,7 @@ function buildConfig<T>(config?: Partial<RequestStateConfig>, initialData?: T): 
   };
 }
 
-export default function requestState<T = unknown, M = undefined>(
+export default function requestState<T = undefined, M = undefined>(
   initialData?: T,
   config?: Partial<RequestStateConfig>
 ): RequestState<T, M> {
