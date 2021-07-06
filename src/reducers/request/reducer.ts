@@ -1,21 +1,20 @@
-import { RequestStateConfig, StateConfig, RequestState, ExtractMeta, ExtractData } from './types';
+import { StateConfig, RequestState, ExtractMeta, ExtractData } from './types';
 
-function buildConfig<T>(config?: Partial<RequestStateConfig>, initialData?: T): StateConfig<T> {
+function buildConfig<T>(config?: Partial<StateConfig<T>>): StateConfig<T> {
   return {
     clearData: false,
     clearError: false,
+    initialData: (undefined as unknown) as T,
     ...config,
-    initialData,
   };
 }
 
 export default function requestState<T = undefined, M = undefined>(
-  initialData?: T,
-  config?: Partial<RequestStateConfig>
+  config?: Partial<StateConfig<T>>
 ): RequestState<T, M> {
   return {
-    config: buildConfig<T>(config, initialData),
-    data: initialData,
+    config: buildConfig<T>(config),
+    data: config?.initialData,
     pending: false,
     error: undefined,
     meta: undefined,

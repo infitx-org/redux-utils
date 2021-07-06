@@ -34,7 +34,7 @@ describe('tests the initialization', () => {
   });
 
   it('initializes the data with the specified type', () => {
-    const obj = requestState<null>(null);
+    const obj = requestState<null>({ initialData: null });
     expect(obj.data).toBe(null);
   });
 
@@ -44,7 +44,7 @@ describe('tests the initialization', () => {
   });
 
   it('initialzes the data with an empty collection', () => {
-    const obj = requestState<number[]>([]);
+    const obj = requestState<number[]>({ initialData: [] });
     expect(obj.data).toStrictEqual([]);
   });
 });
@@ -65,7 +65,7 @@ describe('tests the "request" method', () => {
   });
 
   it('does not clear the data by default', () => {
-    const obj = requestState<string>('initialValue');
+    const obj = requestState<string>({ initialData: 'initialValue' });
     obj.data = 'changedValue';
     const result = requestState.request(obj);
 
@@ -73,7 +73,7 @@ describe('tests the "request" method', () => {
   });
 
   it('clears the data if set in config', () => {
-    const obj = requestState<string>('initialValue', { clearData: true });
+    const obj = requestState<string>({ clearData: true, initialData: 'initialValue' });
     obj.data = 'changedValue';
     const result = requestState.request(obj);
 
@@ -89,7 +89,7 @@ describe('tests the "request" method', () => {
   });
 
   it('clears the error if set in config', () => {
-    const obj = requestState(undefined, { clearError: true });
+    const obj = requestState({ clearError: true });
     obj.error = 'error';
     const result = requestState.request(obj);
 
@@ -107,7 +107,7 @@ describe('tests the "failed" method', () => {
   });
 
   it('does not clear the data by default', () => {
-    const obj = requestState<string>('initialValue');
+    const obj = requestState<string>({ initialData: 'initialValue' });
     obj.data = 'changedValue';
     const result = requestState.failed(obj, 'error');
 
@@ -115,7 +115,7 @@ describe('tests the "failed" method', () => {
   });
 
   it('clears the data if set in config', () => {
-    const obj = requestState<string>('initialValue', { clearData: true });
+    const obj = requestState<string>({ clearData: true, initialData: 'initialValue' });
     obj.data = 'changedValue';
     const result = requestState.failed(obj, 'error');
 

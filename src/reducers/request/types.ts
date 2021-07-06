@@ -1,12 +1,9 @@
 export type ErrorType = string | number;
 
-export interface RequestStateConfig {
+export interface StateConfig<T> {
   clearData: boolean;
   clearError: boolean;
-}
-
-export interface StateConfig<T> extends RequestStateConfig {
-  initialData?: T;
+  initialData: T;
 }
 
 export interface InitializedState<T, M> {
