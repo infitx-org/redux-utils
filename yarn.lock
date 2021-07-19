@@ -1161,10 +1161,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@modusbox/ts-utils@^0.0.2-6":
-  version "0.0.2-6"
-  resolved "https://registry.yarnpkg.com/@modusbox/ts-utils/-/ts-utils-0.0.2-6.tgz#1dc4695df37ad86a3673edbc02f1ebfe4dc60082"
-  integrity sha512-Fqg9oEMI1h6qbEBCoqR4qLYd1By4PvxfjWssWpDV1oSYsE/hdbswDy9resuWhL4kQWCAqhd2TslpFarLlLGLYw==
+"@modusbox/ts-utils@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@modusbox/ts-utils/-/ts-utils-0.0.3.tgz#8dd31001a3cb5eed08ff1cc42b37cc5796675b25"
+  integrity sha512-VcxVMMMmTpccy59uMw3GCf/vLeohRbm7cswoSu4WwksEDmjt+nNu1mf1mHDzf1HrSXTQnN/dLRh/r7ZlOkNTXw==
   dependencies:
     lodash "^4.17.21"
 
