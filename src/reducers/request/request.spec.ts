@@ -10,6 +10,7 @@ describe('tests the requests reducer', () => {
     const request = requestState();
 
     expect(request).toHaveProperty('config');
+    expect(request).toHaveProperty('initialized');
     expect(request).toHaveProperty('data');
     expect(request).toHaveProperty('error');
     expect(request).toHaveProperty('pending');
@@ -27,6 +28,7 @@ describe('tests the initialization', () => {
     expect(state.obj.config.clearError).toBe(false);
     expect(state.obj.config.initialData).toBe(undefined);
 
+    expect(state.obj.initialized).toBe(false);
     expect(state.obj.data).toBe(undefined);
     expect(state.obj.error).toBe(undefined);
     expect(state.obj.pending).toBe(false);
@@ -46,6 +48,15 @@ describe('tests the initialization', () => {
   it('initialzes the data with an empty collection', () => {
     const obj = requestState<number[]>({ initialData: [] });
     expect(obj.data).toStrictEqual([]);
+  });
+
+  it('sets the initialized property when any method is called', () => {
+    const state = requestState();
+    expect(state.initialized).toBe(false);
+
+    expect(requestState.request(state).initialized).toBe(true);
+    expect(requestState.succeeded(state, 'data').initialized).toBe(true);
+    expect(requestState.failed(state, 'error').initialized).toBe(true);
   });
 });
 
