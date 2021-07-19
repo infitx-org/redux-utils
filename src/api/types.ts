@@ -41,7 +41,7 @@ interface Service<State> {
 }
 
 // Mocking configuration
-export type MockCall<Params = unknown> = (data: Params) => Response;
+export type MockCall<Params = unknown> = (data: Params) => Response | Promise<Response>;
 
 export type CompositeMock<Params = unknown> = {
   call: MockCall<Params>;

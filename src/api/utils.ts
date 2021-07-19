@@ -1,5 +1,13 @@
 import sleep from '@modusbox/ts-utils/lib/async/sleep';
-import { Method, MockCall, CompositeMock, EndpointConfig, MethodName, BaseObject } from './types';
+import {
+  Method,
+  MockCall,
+  CompositeMock,
+  EndpointConfig,
+  MethodName,
+  BaseObject,
+  Response,
+} from './types';
 
 function isMockCall(mockConfig: MockCall | CompositeMock): mockConfig is MockCall {
   return typeof mockConfig === 'function';
@@ -9,7 +17,9 @@ export function getMock<State>(
   state: State,
   config: EndpointConfig,
   methodName: MethodName
-): ((d: BaseObject) => Generator<Promise<true>, unknown, unknown>) | undefined {
+):
+  | ((d: BaseObject) => Generator<Promise<true> | Response | Promise<Response>, unknown, unknown>)
+  | undefined {
   if (config.service.mock?.(state)) {
     const mockConfig = config.mock?.[methodName];
     if (mockConfig) {
@@ -19,7 +29,8 @@ export function getMock<State>(
 
         // simulate delay
         yield sleep(delay);
-        return mockFn(data);
+        const response = yield mockFn(data);
+        return response;
       };
     }
   }
