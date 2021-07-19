@@ -14,6 +14,7 @@ export default function requestState<T = unknown, M = unknown>(
 ): RequestState<T, M> {
   return {
     config: buildConfig<T>(config),
+    initialized: false,
     data: config?.initialData,
     pending: false,
     error: undefined,
@@ -35,6 +36,7 @@ requestState.request = function setRequestStatePending<S extends RequestState>(
 ): PendingState<ExtractData<S>, ExtractMeta<S>> {
   return {
     config: state.config,
+    initialized: true,
     data: setDataByConfig(state),
     pending: true,
     error: setErrorByConfig(state),
@@ -48,9 +50,10 @@ requestState.succeeded = function setRequestStateSuccess<S extends RequestState>
 ): RequestState<ExtractData<S>, ExtractMeta<S>> {
   return {
     config: state.config,
-    error: undefined,
+    initialized: true,
     data,
     pending: false,
+    error: undefined,
     meta: state.meta,
   };
 };
@@ -61,6 +64,7 @@ requestState.failed = function setRequestStateError<S extends RequestState>(
 ): RequestState<ExtractData<S>, ExtractMeta<S>> {
   return {
     config: state.config,
+    initialized: true,
     data: setDataByConfig(state),
     pending: false,
     error,

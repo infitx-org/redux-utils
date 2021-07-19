@@ -8,6 +8,7 @@ export interface StateConfig<T> {
 
 export interface InitializedState<T, M> {
   config: StateConfig<T | undefined>;
+  initialized: false;
   pending: false;
   error: undefined;
   data: T | undefined;
@@ -16,6 +17,7 @@ export interface InitializedState<T, M> {
 
 export interface PendingState<T, M> {
   config: StateConfig<T | undefined>;
+  initialized: true;
   pending: true;
   error: ErrorType | undefined;
   data: T | undefined;
@@ -24,6 +26,7 @@ export interface PendingState<T, M> {
 
 export interface SuccessState<T, M> {
   config: StateConfig<T | undefined>;
+  initialized: true;
   pending: false;
   error: undefined;
   data: T;
@@ -32,6 +35,7 @@ export interface SuccessState<T, M> {
 
 export interface ErrorState<T, M> {
   config: StateConfig<T | undefined>;
+  initialized: true;
   pending: false;
   error: ErrorType;
   data: T | undefined;
