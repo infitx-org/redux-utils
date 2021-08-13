@@ -7,10 +7,6 @@
   "files": [
     "lib/**/*"
   ],
-  "exports": {
-    ".": "./lib/index.js",
-    "./": "./lib/"
-  },
   "dependencies": {
     "@modusbox/ts-utils": "^0.0.3",
     "axios": "^0.21.1",
