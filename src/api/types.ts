@@ -1,7 +1,5 @@
-import { AxiosPromise, AxiosResponse } from 'axios';
-import { SelectEffect, CallEffect } from 'redux-saga/effects';
-
-type KeysOfTypeOfEnum<TEnumType> = keyof TEnumType;
+import { CallEffect, SelectEffect } from 'redux-saga/effects';
+// import { Saga } from 'redux-saga';
 
 export type BaseObject = Record<string, unknown>;
 
@@ -13,22 +11,22 @@ export enum Method {
   modify = 'patch',
 }
 
-export type MethodName = KeysOfTypeOfEnum<typeof Method>;
-
-export type Response = {
-  status: number;
-  data: unknown;
-};
+export type MethodName = keyof typeof Method;
 
 export type HttpConfig = {
   body?: unknown;
   params?: unknown;
 };
 
-export type Dispatcher<State = unknown> = Generator<
-  State | SelectEffect | CallEffect | AxiosPromise,
-  Response,
-  BaseObject & State & AxiosResponse
+export type MakeResponse<Data> = {
+  status: number;
+  data: Data;
+};
+
+export type Dispatcher<State = unknown, Data = unknown> = Generator<
+  State | SelectEffect | CallEffect,
+  MakeResponse<Data>,
+  MakeResponse<Data>
 >;
 
 export type UrlConfig<State = unknown, Params = unknown> =
@@ -41,38 +39,47 @@ interface Service<State> {
 }
 
 // Mocking configuration
-export type MockCall<Params = unknown> = (data: Params) => Response | Promise<Response>;
+export type MockCall<Params = unknown, Data = unknown> = (
+  data: Params
+) => MakeResponse<Data> | Promise<MakeResponse<Data>>;
 
-export type CompositeMock<Params = unknown> = {
-  call: MockCall<Params>;
+export type CompositeMock<Params = unknown, Data = unknown> = {
+  call: MockCall<Params, Data>;
   delay: number;
 };
 
-type MockConfig<Params = unknown> = Record<MethodName, MockCall<Params> | CompositeMock<Params>>;
+type MockConfig<Params = unknown, Data = unknown> = Record<
+  MethodName,
+  MockCall<Params, Data> | CompositeMock<Params, Data>
+>;
 
 // Endpoints configuration
 // eslint-disable-next-line
-export interface EndpointConfig<State = any, Params = any> {
+export interface EndpointConfig<State = any, Params = any, Data = any> {
   service: Service<State>;
   url: UrlConfig<State, Params>;
-  transformResponse?: (data: unknown) => unknown;
-  mock?: Partial<MockConfig<Params>>;
+  transformResponse?: (data: Data) => unknown;
+  mock?: Partial<MockConfig<Params, Data>>;
 }
 
 export type Endpoints = Record<string, EndpointConfig>;
 
 // This helps us to extract from a given type
-type StateAndParams<C> = C extends EndpointConfig<infer State, infer Params>
-  ? [State, Params]
+type ConfigTypes<C> = C extends EndpointConfig<infer State, infer Params, infer Data>
+  ? [State, Params, Data]
   : never;
 
 // Api object configuration
-export type ExtractState<C> = StateAndParams<C>[0];
-export type ExtractParams<C> = StateAndParams<C>[1];
+export type ExtractState<C> = ConfigTypes<C>[0];
+export type ExtractParams<C> = ConfigTypes<C>[1];
+export type ExtractData<C> = ConfigTypes<C>[2];
 
 export type ApiMethodMap<T extends EndpointConfig> = Record<
   MethodName,
-  (params: ExtractParams<T> & Partial<HttpConfig>) => Dispatcher<ExtractState<T>>
+  // eslint-disable-next-line
+  (...a: any[]) => MakeResponse<ExtractData<T>>
+  // Saga<ExtractParams<T> & Partial<HttpConfig>>
+  // (params: ExtractParams<T> & Partial<HttpConfig>) => Iterator<ExtractData<T>>
 >;
 
 export type Api<T extends Endpoints> = { [K in keyof T]: ApiMethodMap<T[K]> };
