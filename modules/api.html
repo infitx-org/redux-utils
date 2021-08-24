@@ -90,12 +90,13 @@
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#compositemock" class="tsd-kind-icon">Composite<wbr>Mock</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#dispatcher" class="tsd-kind-icon">Dispatcher</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#endpoints" class="tsd-kind-icon">Endpoints</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#extractdata" class="tsd-kind-icon">Extract<wbr>Data</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#extractparams" class="tsd-kind-icon">Extract<wbr>Params</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#extractstate" class="tsd-kind-icon">Extract<wbr>State</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#httpconfig" class="tsd-kind-icon">Http<wbr>Config</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#makeresponse" class="tsd-kind-icon">Make<wbr>Response</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#methodname" class="tsd-kind-icon">Method<wbr>Name</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#mockcall" class="tsd-kind-icon">Mock<wbr>Call</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="api.html#response" class="tsd-kind-icon">Response</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="api.html#urlconfig" class="tsd-kind-icon">Url<wbr>Config</a></li>
 							</ul>
 						</section>
@@ -117,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">Api&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><a href="api.html#apimethodmap" class="tsd-signature-type" data-tsd-kind="Type alias">ApiMethodMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L78">src/api/types.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L85">src/api/types.ts:85</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -130,10 +131,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="apimethodmap" class="tsd-anchor"></a>
 					<h3>Api<wbr>Method<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">Api<wbr>Method<wbr>Map&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#methodname" class="tsd-signature-type" data-tsd-kind="Type alias">MethodName</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="api.html#extractparams" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#httpconfig" class="tsd-signature-type" data-tsd-kind="Type alias">HttpConfig</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#dispatcher" class="tsd-signature-type" data-tsd-kind="Type alias">Dispatcher</a><span class="tsd-signature-symbol">&lt;</span><a href="api.html#extractstate" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Api<wbr>Method<wbr>Map&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#methodname" class="tsd-signature-type" data-tsd-kind="Type alias">MethodName</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="api.html#extractdata" class="tsd-signature-type" data-tsd-kind="Type alias">ExtractData</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L73">src/api/types.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L77">src/api/types.ts:77</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -149,17 +150,17 @@
 					<div class="tsd-signature tsd-kind-icon">Base<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L6">src/api/types.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L4">src/api/types.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="compositemock" class="tsd-anchor"></a>
 					<h3>Composite<wbr>Mock</h3>
-					<div class="tsd-signature tsd-kind-icon">Composite<wbr>Mock&lt;Params&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>call<span class="tsd-signature-symbol">: </span><a href="api.html#mockcall" class="tsd-signature-type" data-tsd-kind="Type alias">MockCall</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>delay<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">Composite<wbr>Mock&lt;Params, Data&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>call<span class="tsd-signature-symbol">: </span><a href="api.html#mockcall" class="tsd-signature-type" data-tsd-kind="Type alias">MockCall</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>delay<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L46">src/api/types.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L46">src/api/types.ts:46</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -167,12 +168,15 @@
 						<li>
 							<h4>Params = <span class="tsd-signature-type">unknown</span></h4>
 						</li>
+						<li>
+							<h4>Data = <span class="tsd-signature-type">unknown</span></h4>
+						</li>
 					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>call<span class="tsd-signature-symbol">: </span><a href="api.html#mockcall" class="tsd-signature-type" data-tsd-kind="Type alias">MockCall</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>call<span class="tsd-signature-symbol">: </span><a href="api.html#mockcall" class="tsd-signature-type" data-tsd-kind="Type alias">MockCall</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 							<li class="tsd-parameter">
 								<h5>delay<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -183,16 +187,19 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="dispatcher" class="tsd-anchor"></a>
 					<h3>Dispatcher</h3>
-					<div class="tsd-signature tsd-kind-icon">Dispatcher&lt;State&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Generator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SelectEffect</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CallEffect</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosPromise</span><span class="tsd-signature-symbol">, </span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol">, </span><a href="api.html#baseobject" class="tsd-signature-type" data-tsd-kind="Type alias">BaseObject</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Dispatcher&lt;State, Data&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Generator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SelectEffect</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CallEffect</span><span class="tsd-signature-symbol">, </span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L28">src/api/types.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L26">src/api/types.ts:26</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
 							<h4>State = <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+						<li>
+							<h4>Data = <span class="tsd-signature-type">unknown</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -202,17 +209,33 @@
 					<div class="tsd-signature tsd-kind-icon">Endpoints<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/api.endpointconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">EndpointConfig</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L62">src/api/types.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L65">src/api/types.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
-					<a name="extractparams" class="tsd-anchor"></a>
-					<h3>Extract<wbr>Params</h3>
-					<div class="tsd-signature tsd-kind-icon">Extract<wbr>Params&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">StateAndParams</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">]</span></div>
+					<a name="extractdata" class="tsd-anchor"></a>
+					<h3>Extract<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">Extract<wbr>Data&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConfigTypes</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L71">src/api/types.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L75">src/api/types.ts:75</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>C</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+					<a name="extractparams" class="tsd-anchor"></a>
+					<h3>Extract<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Extract<wbr>Params&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConfigTypes</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L74">src/api/types.ts:74</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -225,10 +248,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="extractstate" class="tsd-anchor"></a>
 					<h3>Extract<wbr>State</h3>
-					<div class="tsd-signature tsd-kind-icon">Extract<wbr>State&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">StateAndParams</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span></div>
+					<div class="tsd-signature tsd-kind-icon">Extract<wbr>State&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConfigTypes</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L70">src/api/types.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L73">src/api/types.ts:73</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -244,7 +267,7 @@
 					<div class="tsd-signature tsd-kind-icon">Http<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span>params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L23">src/api/types.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L16">src/api/types.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -259,23 +282,50 @@
 						</ul>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+					<a name="makeresponse" class="tsd-anchor"></a>
+					<h3>Make<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Make<wbr>Response&lt;Data&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L21">src/api/types.ts:21</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>Data</h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Data</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
 					<a name="methodname" class="tsd-anchor"></a>
 					<h3>Method<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">Method<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">KeysOfTypeOfEnum</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="../enums/api.method.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Method</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Method<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-symbol">typeof </span><a href="../enums/api.method.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Method</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L16">src/api/types.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L14">src/api/types.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 					<a name="mockcall" class="tsd-anchor"></a>
 					<h3>Mock<wbr>Call</h3>
-					<div class="tsd-signature tsd-kind-icon">Mock<wbr>Call&lt;Params&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Mock<wbr>Call&lt;Params, Data&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L44">src/api/types.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L42">src/api/types.ts:42</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -283,13 +333,16 @@
 						<li>
 							<h4>Params = <span class="tsd-signature-type">unknown</span></h4>
 						</li>
+						<li>
+							<h4>Data = <span class="tsd-signature-type">unknown</span></h4>
+						</li>
 					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -299,30 +352,9 @@
 												<h5>data: <span class="tsd-signature-type">Params</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#response" class="tsd-signature-type" data-tsd-kind="Type alias">Response</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#makeresponse" class="tsd-signature-type" data-tsd-kind="Type alias">MakeResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="response" class="tsd-anchor"></a>
-					<h3>Response</h3>
-					<div class="tsd-signature tsd-kind-icon">Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L18">src/api/types.ts:18</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -333,7 +365,7 @@
 					<div class="tsd-signature tsd-kind-icon">Url<wbr>Config&lt;State, Params&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">State</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/types.ts#L34">src/api/types.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/types.ts#L32">src/api/types.ts:32</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -359,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/build.ts#L16">src/api/build.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/build.ts#L16">src/api/build.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -382,7 +414,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/f881f60/src/api/build.ts#L33">src/api/build.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/modusintegration/redux-utils/blob/8fbf2a6/src/api/build.ts#L33">src/api/build.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -453,6 +485,9 @@
 						<a href="api.html#endpoints" class="tsd-kind-icon">Endpoints</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="api.html#extractdata" class="tsd-kind-icon">Extract<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 						<a href="api.html#extractparams" class="tsd-kind-icon">Extract<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
@@ -461,14 +496,14 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
 						<a href="api.html#httpconfig" class="tsd-kind-icon">Http<wbr>Config</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="api.html#makeresponse" class="tsd-kind-icon">Make<wbr>Response</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
 						<a href="api.html#methodname" class="tsd-kind-icon">Method<wbr>Name</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 						<a href="api.html#mockcall" class="tsd-kind-icon">Mock<wbr>Call</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="api.html#response" class="tsd-kind-icon">Response</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
 						<a href="api.html#urlconfig" class="tsd-kind-icon">Url<wbr>Config</a>
