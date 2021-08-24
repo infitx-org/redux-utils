@@ -6,7 +6,7 @@ import {
   EndpointConfig,
   MethodName,
   BaseObject,
-  Response,
+  MakeResponse,
 } from './types';
 
 function isMockCall(mockConfig: MockCall | CompositeMock): mockConfig is MockCall {
@@ -18,7 +18,13 @@ export function getMock<State>(
   config: EndpointConfig,
   methodName: MethodName
 ):
-  | ((d: BaseObject) => Generator<Promise<true> | Response | Promise<Response>, unknown, unknown>)
+  | ((
+      d: BaseObject
+    ) => Generator<
+      Promise<true> | MakeResponse<unknown> | Promise<MakeResponse<unknown>>,
+      unknown,
+      unknown
+    >)
   | undefined {
   if (config.service.mock?.(state)) {
     const mockConfig = config.mock?.[methodName];

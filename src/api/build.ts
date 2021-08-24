@@ -9,14 +9,14 @@ import {
 } from './types';
 import buildDispatcher from './dispatcher';
 
-type Builder<State> = <Params extends BaseObject>(
-  config: EndpointConfig<State, Params>
-) => EndpointConfig<State, Params>;
+type Builder<State> = <Params extends BaseObject, Data extends unknown = unknown>(
+  config: EndpointConfig<State, Params, Data>
+) => EndpointConfig<State, Params, Data>;
 
 export function buildEndpointBuilder<State extends unknown>(): Builder<State> {
-  const buildEndpoint = <Params extends BaseObject>(
-    config: EndpointConfig<State, Params>
-  ): EndpointConfig<State, Params> => config;
+  const buildEndpoint = <Params extends BaseObject, Data extends unknown>(
+    config: EndpointConfig<State, Params, Data>
+  ): EndpointConfig<State, Params, Data> => config;
   return buildEndpoint;
 }
 
@@ -38,9 +38,3 @@ export default function buildApis<T extends Endpoints>(endpoints: T): Api<T> {
     };
   }, {} as Api<T>);
 }
-
-// <Type<Name, Lastname>>
-
-// function fucking<T extends Type>(t: Type) {
-
-// }
