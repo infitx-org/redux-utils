@@ -3,6 +3,7 @@
   "version": "0.0.9",
   "main": "lib/index.js",
   "license": "MIT",
+  "author": "Ivan Annovazzi <ivan@modusbox.com>",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
