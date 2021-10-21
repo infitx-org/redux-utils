@@ -175,6 +175,26 @@ describe('test the mock functions', () => {
     expect(axios).not.toHaveBeenCalled();
   });
 
+  it('should pass withCredentials to axios', async () => {
+    const apis = buildApis({
+      todo: builder({
+        service: testService,
+        url: () => '/todos/1',
+        withCredentials: true,
+      }),
+    });
+
+    await runSagaWithArgs(apis.todo.read, { id: '2' });
+    expect(axios).toHaveBeenCalledWith({
+      data: undefined,
+      method: expect.any(String),
+      params: undefined,
+      url: expect.any(String),
+      validateStatus: expect.any(Function),
+      withCredentials: true,
+    });
+  });
+
   it('should use the mock function in the abbreviated form', async () => {
     const apis = buildApis({
       todo: builder({

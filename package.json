@@ -1,6 +1,6 @@
 {
   "name": "@modusbox/redux-utils",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Ivan Annovazzi <ivan@modusbox.com>",

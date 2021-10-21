@@ -34,6 +34,7 @@ export default function buildDispatcher<T extends EndpointConfig>(
         params: data.params,
         data: data.body,
         validateStatus: () => true,
+        withCredentials: config.withCredentials,
       });
     }
 
