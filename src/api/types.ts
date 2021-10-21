@@ -58,6 +58,7 @@ type MockConfig<Params = unknown, Data = unknown> = Record<
 export interface EndpointConfig<State = any, Params = any, Data = any> {
   service: Service<State>;
   url: UrlConfig<State, Params>;
+  withCredentials?: boolean;
   transformResponse?: (data: Data) => unknown;
   mock?: Partial<MockConfig<Params, Data>>;
 }
